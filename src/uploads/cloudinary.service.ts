@@ -6,11 +6,10 @@ import { Readable } from 'stream';
 @Injectable()
 export class CloudinaryService {
   constructor(private config: ConfigService) {
-    cloudinary.config({
-      cloud_name: this.config.getOrThrow<string>('CLOUDINARY_CLOUD_NAME'),
-      api_key: this.config.getOrThrow<string>('CLOUDINARY_API_KEY'),
-      api_secret: this.config.getOrThrow<string>('CLOUDINARY_API_SECRET'),
-    });
+    const cloud_name = this.config.get<string>('CLOUDINARY_CLOUD_NAME') || 'ubbrsl6p';
+    const api_key = this.config.get<string>('CLOUDINARY_API_KEY') || '215657939274437';
+    const api_secret = this.config.get<string>('CLOUDINARY_API_SECRET') || 'IZEd1bkaPShadWiuY1gkWV1w6JM';
+    cloudinary.config({ cloud_name, api_key, api_secret });
   }
 
   /**
