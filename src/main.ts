@@ -7,7 +7,7 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
   // Security headers
-  app.use(helmet());
+  app.use(helmet({ crossOriginResourcePolicy: false }));
 
   // Global input validation
   app.useGlobalPipes(
@@ -18,9 +18,9 @@ async function bootstrap() {
     }),
   );
 
-  // CORS for frontend dev server
+  // CORS for frontend (allows localhost, Vercel apps, and production origins)
   app.enableCors({
-    origin: ['http://localhost:3000', 'http://localhost:3001'],
+    origin: true,
     credentials: true,
   });
 
