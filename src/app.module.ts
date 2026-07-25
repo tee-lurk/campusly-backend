@@ -12,8 +12,10 @@ import { ProductTypesModule } from './product-types/product-types.module';
 import { AdminModule } from './admin/admin.module';
 import { TransactionsModule } from './transactions/transactions.module';
 import { UploadsModule } from './uploads/uploads.module';
+import { AppController } from './app.controller';
 
 @Module({
+  controllers: [AppController],
   imports: [
     // Load .env globally
     ConfigModule.forRoot({ isGlobal: true }),
