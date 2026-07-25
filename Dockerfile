@@ -13,4 +13,4 @@ COPY --from=builder /app/prisma ./prisma
 COPY --from=builder /app/prisma.config.ts ./prisma.config.ts
 COPY package*.json ./
 EXPOSE 3002
-CMD ["sh", "-c", "npx prisma migrate deploy && node dist/main"]
+CMD ["sh", "-c", "echo 'Running migrations...' && (npx prisma migrate deploy && echo 'Migrations complete' || echo 'Migration failed but continuing startup'); echo 'Starting app...' && node dist/main"]
